@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+         stage('Run Ansible') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: 'sshkey', disableHostKeyChecking: true, installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/installApache.yml'
+            }
+        }
+    }
+}
